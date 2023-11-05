@@ -1,5 +1,9 @@
 # Cách setup khi khởi tạo 1 dự án mới với typescript
 
+## Cài đặt package cho dự án Vite React TS
+
+### Cài các depedency
+
 ### Bộ ESLint và Prettier trước
 
 > Chúng ta sẽ cài hơi nhiều package 1 tí vì chúng ta setup từ đầu, còn Create React App setup sẵn 1 số thứ về ESLint rồi.
@@ -246,10 +250,7 @@ Code xóa các ký tự đặc biệt trên bàn phím
 ```ts
 export const removeSpecialCharacter = (str: string) =>
   // eslint-disable-next-line no-useless-escape
-  str.replace(
-    /!|@|%|\^|\*|\(|\)|\+|\=|\<|\>|\?|\/|,|\.|\:|\;|\'|\"|\&|\#|\[|\]|~|\$|_|`|-|{|}|\||\\/g,
-    ''
-  )
+  str.replace(/!|@|%|\^|\*|\(|\)|\+|\=|\<|\>|\?|\/|,|\.|\:|\;|\'|\"|\&|\#|\[|\]|~|\$|_|`|-|{|}|\||\\/g, '')
 ```
 
 Sữa lỗi Tailwindcss Extension không gợi ý class
