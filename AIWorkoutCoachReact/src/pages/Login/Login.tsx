@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import ThemeSwitchButton from 'src/components/ThemeSwitchButton'
 
 export default function Login() {
@@ -17,7 +18,7 @@ export default function Login() {
               Your email
             </label>
             <input
-              type='text'
+              type='email'
               id='email'
               placeholder='name@company.com'
               name='email'
@@ -67,9 +68,9 @@ export default function Login() {
           </button>
           <p className='text-sm font-light text-gray-400 dark:text-gray-400'>
             Dont't have an account yet?
-            <a href='#' className='font-medium text-blue-600 hover:underline pl-2 dark:text-blue-500'>
+            <Link className='font-medium text-blue-600 hover:underline pl-2 dark:text-blue-500' to='/register'>
               Sign up
-            </a>
+            </Link>
           </p>
         </form>
       </div>
