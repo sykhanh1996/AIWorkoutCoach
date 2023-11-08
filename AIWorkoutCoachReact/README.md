@@ -266,3 +266,7 @@ Các bạn thêm đoạn code này vào `settings.json` của VS Code
 yarn add -D @tailwindcss/forms
 yarn add @tailwindcss/forms
 yarn add react-icons --save
+yarn add styled-components
+yarn add react-hook-form
+yarn add @hookform/resolvers
+yarn add yup

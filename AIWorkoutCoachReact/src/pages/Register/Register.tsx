@@ -1,7 +1,17 @@
 import { Link } from 'react-router-dom'
+import { useForm } from 'react-hook-form'
 import ThemeSwitchButton from 'src/components/ThemeSwitchButton'
+import { yupResolver } from '@hookform/resolvers/yup'
+
+// const registerSchema = schema.pick(['email', 'password', 'confirm_password'])
 
 export default function Register() {
+  // const {register,
+  // handleSubmit} = useForm<FormData>({
+  //   resolver: yupResolver(*)
+  // })
+
+
   return (
     <div className='w-full bg-white rounded-lg shadow lg:w-4/12 md:w-7/12 dark:bg-gray-800 dark:border-gray-700'>
       <div className='p-6 space-y-4'>

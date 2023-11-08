@@ -1,7 +1,18 @@
+import { useForm } from 'react-hook-form'
 import { Link } from 'react-router-dom'
 import ThemeSwitchButton from 'src/components/ThemeSwitchButton'
 
 export default function Login() {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors }
+  } = useForm()
+
+  const onSubmit = handleSubmit((data) => {
+    console.log(data)
+  })
+
   return (
     <div className='w-full bg-white rounded-lg shadow lg:w-4/12 md:w-7/12 dark:bg-gray-800 dark:border-gray-700'>
       <div className='p-6 space-y-4'>
@@ -12,7 +23,7 @@ export default function Login() {
           <ThemeSwitchButton />
         </div>
 
-        <form className='space-y-4 md:space-y-6' action='#'>
+        <form className='space-y-4 md:space-y-6' onSubmit={onSubmit}>
           <div>
             <label htmlFor='email' className='block text-sm font-medium text-gray-900 mb-2 dark:text-white'>
               Your email
