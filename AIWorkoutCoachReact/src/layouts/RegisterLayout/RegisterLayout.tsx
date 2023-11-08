@@ -8,12 +8,16 @@ interface Props {
 }
 function RegisterLayoutInner({ children }: Props) {
   return (
-    <div>
-      <RegisterHeader />
-      {children}
-      <Outlet />
-      <Footer />
-    </div>
+    <section className='bg-gray-50 dark:bg-gray-900'>
+      <div className='container m-auto px-4 sm:px-0'>
+        <div className='flex flex-col items-center justify-center h-screen'>
+          <RegisterHeader />
+          {children}
+          <Outlet />
+          <Footer />
+        </div>
+      </div>
+    </section>
   )
 }
 const RegisterLayout = memo(RegisterLayoutInner)
