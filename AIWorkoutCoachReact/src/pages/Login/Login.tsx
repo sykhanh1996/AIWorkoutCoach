@@ -3,7 +3,7 @@ import { BsSun } from 'react-icons/bs'
 
 export default function Login() {
   return (
-    <section className='bg-gray-50 dark:bg-gray-900' style={{ height: '5000px' }}>
+    <section className='bg-gray-50 dark:bg-gray-900'>
       <div className='container m-auto px-4 sm:px-0'>
         <div className='flex flex-col items-center justify-center h-screen'>
           <a href='#' className='flex items-center justify-center text-2xl mb-6 font-semibold text-gray-900'>
@@ -11,7 +11,7 @@ export default function Login() {
             AI Coach
           </a>
 
-          <div className='w-full bg-white rounded-lg shadow sm:w-6/12'>
+          <div className='w-full bg-white rounded-lg shadow sm:w-4/12'>
             <div className='p-6 space-y-4'>
               <div className='flex items-center justify-between'>
                 <h1 className='font-bold text-xl leading-tight tracking-tight text-gray-900 md:text-2xl'>Sign in</h1>
