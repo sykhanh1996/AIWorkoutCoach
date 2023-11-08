@@ -3,7 +3,7 @@ import ThemeSwitchButton from 'src/components/ThemeSwitchButton'
 
 export default function Register() {
   return (
-    <div className='w-full bg-white rounded-lg shadow md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border dark:border-gray-700'>
+    <div className='w-full bg-white rounded-lg shadow lg:w-4/12 md:w-7/12 dark:bg-gray-800 dark:border-gray-700'>
       <div className='p-6 space-y-4'>
         <div className='flex items-center justify-between'>
           <h1 className='text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white'>
@@ -23,7 +23,7 @@ export default function Register() {
               name='email'
               className='form-input bg-gray-50 w-full border border-gray-300 rounded-lg text-gray-900 text-sm p-2.5 block focus:ring-blue-600 focus:border-blue-500
                     focus:outline-none focus:border-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'
-            ></input>{' '}
+            ></input>
           </div>
           <div>
             <label htmlFor='password' className='block text-sm font-medium text-gray-900 mb-2 dark:text-white'>

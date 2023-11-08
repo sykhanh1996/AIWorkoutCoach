@@ -1,17 +1,13 @@
-import { BsSun } from 'react-icons/bs'
+import { BsSun, BsFillMoonFill } from 'react-icons/bs'
+import useTheme from 'src/hooks/useTheme'
 
 export default function ThemeSwitchButton() {
-  function toggleTheme() {
-    document.documentElement.classList.toggle('dark')
-  }
+  const { currentTheme, toggleTheme } = useTheme()
+
   return (
     <>
-      <button className='inline-block w-4' onClick={toggleTheme}>
-        <BsSun
-          style={{
-            innerHeight: '50px'
-          }}
-        />
+      <button className='inline-block w-4 dark:text-gray-600' onClick={toggleTheme}>
+        {currentTheme === 'dark' ? <BsFillMoonFill /> : <BsSun />}
       </button>
     </>
   )
