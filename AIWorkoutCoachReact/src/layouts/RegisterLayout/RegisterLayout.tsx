@@ -9,7 +9,7 @@ interface Props {
 function RegisterLayoutInner({ children }: Props) {
   return (
     <section className='bg-gray-50 dark:bg-gray-900'>
-      <div className='container m-auto px-4 sm:px-0'>
+      <div className='container sm:px-0'>
         <div className='flex flex-col items-center justify-center h-screen'>
           <RegisterHeader />
           {children}
