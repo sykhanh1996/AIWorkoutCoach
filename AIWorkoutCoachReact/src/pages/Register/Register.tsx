@@ -1,26 +1,24 @@
 import { Link } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import ThemeSwitchButton from 'src/components/ThemeSwitchButton'
-import { getRules } from 'src/utils/rules'
+import { Schema, getRules, schema } from 'src/utils/rules'
 import Input from 'src/components/Input'
+import { yupResolver } from '@hookform/resolvers/yup'
 
 // const registerSchema = schema.pick(['email', 'password', 'confirm_password'])
 
 export default function Register() {
-  interface FormData {
-    email: string
-    password: string
-    confirm_password: string
-    terms: boolean
-  }
+  type FormData = Schema
   const {
     register,
     handleSubmit,
     getValues,
     formState: { errors }
-  } = useForm<FormData>()
+  } = useForm<FormData>({
+    resolver: yupResolver(schema)
+  })
 
-  const rules = getRules(getValues)
+  // const rules = getRules(getValues)
 
   const onSubmit = handleSubmit(
     (data) => {
@@ -49,7 +47,6 @@ export default function Register() {
             errorMessage={errors.email?.message}
             placeholder='name@company.com'
             autoComplete='on'
-            rules={rules.email}
             label={
               <label htmlFor='email' className='block text-sm font-medium text-gray-900 mb-2 dark:text-white '>
                 Your email
@@ -63,7 +60,6 @@ export default function Register() {
             errorMessage={errors.password?.message}
             placeholder='••••••••'
             autoComplete='on'
-            rules={rules.password}
             label={
               <label htmlFor='email' className='block text-sm font-medium text-gray-900 mb-2 dark:text-white '>
                 Password
@@ -77,7 +73,6 @@ export default function Register() {
             errorMessage={errors.confirm_password?.message}
             placeholder='••••••••'
             autoComplete='on'
-            rules={rules.confirm_password}
             label={
               <label htmlFor='email' className='block text-sm font-medium text-gray-900 mb-2 dark:text-white '>
                 Confirm password
