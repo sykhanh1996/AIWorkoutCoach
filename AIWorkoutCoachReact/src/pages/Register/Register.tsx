@@ -1,8 +1,7 @@
 import { Link } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import ThemeSwitchButton from 'src/components/ThemeSwitchButton'
-import { yupResolver } from '@hookform/resolvers/yup'
-import { rules } from 'src/utils/rules'
+import { getRules } from 'src/utils/rules'
 
 // const registerSchema = schema.pick(['email', 'password', 'confirm_password'])
 
@@ -13,18 +12,25 @@ export default function Register() {
     confirm_password: string
     terms: boolean
   }
-
   const {
     register,
     handleSubmit,
+    getValues,
     formState: { errors }
   } = useForm<FormData>()
 
-  const onSubmit = handleSubmit((data) => {
-    console.log(data)
-  })
+  const rules = getRules(getValues)
 
-  console.log('errors', errors)
+  const onSubmit = handleSubmit(
+    (data) => {
+      console.log(data)
+    },
+    (data) => {
+      const password = getValues('password')
+      console.log(password)
+    }
+  )
+
   return (
     <div className='w-full bg-white rounded-lg shadow lg:w-4/12 md:w-7/12 dark:bg-gray-800 dark:border-gray-700'>
       <div className='p-6 space-y-4'>
