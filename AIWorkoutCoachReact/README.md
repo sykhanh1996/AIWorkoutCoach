@@ -275,3 +275,4 @@ yarn add axios
 yarn add @tanstack/react-query
 yarn add @tanstack/react-query-devtools
 yarn add lodash
+yarn add react-toastify
