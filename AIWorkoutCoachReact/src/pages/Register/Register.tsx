@@ -2,16 +2,29 @@ import { Link } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import ThemeSwitchButton from 'src/components/ThemeSwitchButton'
 import { yupResolver } from '@hookform/resolvers/yup'
+import { rules } from 'src/utils/rules'
 
 // const registerSchema = schema.pick(['email', 'password', 'confirm_password'])
 
 export default function Register() {
-  // const {register,
-  // handleSubmit} = useForm<FormData>({
-  //   resolver: yupResolver(*)
-  // })
+  interface FormData {
+    email: string
+    password: string
+    confirm_password: string
+    terms: boolean
+  }
 
+  const {
+    register,
+    handleSubmit,
+    formState: { errors }
+  } = useForm<FormData>()
 
+  const onSubmit = handleSubmit((data) => {
+    console.log(data)
+  })
+
+  console.log('errors', errors)
   return (
     <div className='w-full bg-white rounded-lg shadow lg:w-4/12 md:w-7/12 dark:bg-gray-800 dark:border-gray-700'>
       <div className='p-6 space-y-4'>
@@ -21,19 +34,20 @@ export default function Register() {
           </h1>
           <ThemeSwitchButton />
         </div>
-        <form className='space-y-4 md:space-y-6' action='#'>
+        <form className='space-y-4 md:space-y-6' onSubmit={onSubmit}>
           <div>
-            <label htmlFor='email' className='block text-sm font-medium text-gray-900 mb-2 dark:text-white'>
+            <label htmlFor='email' className='block text-sm font-medium text-gray-900 mb-2 dark:text-white '>
               Your email
             </label>
             <input
               type='email'
-              id='email'
               placeholder='name@company.com'
-              name='email'
               className='form-input bg-gray-50 w-full border border-gray-300 rounded-lg text-gray-900 text-sm p-2.5 block focus:ring-blue-600 focus:border-blue-500
                     focus:outline-none focus:border-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'
+              autoComplete='on'
+              {...register('email', rules.email)}
             ></input>
+            <div className='mt-1 px-2 text-red-600 text-sm min-h-[1rem]'>{errors.email?.message}</div>
           </div>
           <div>
             <label htmlFor='password' className='block text-sm font-medium text-gray-900 mb-2 dark:text-white'>
@@ -41,33 +55,34 @@ export default function Register() {
             </label>
             <input
               type='password'
-              id='password'
-              name='password'
               placeholder='••••••••'
               className='form-input bg-gray-50 w-full border border-gray-300 rounded-lg text-gray-900 text-sm p-2.5 block focus:ring-blue-600 focus:border-blue-500
                     focus:outline-none focus:border-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'
+              autoComplete='on'
+              {...register('password', rules.password)}
             ></input>
+            <div className='mt-1 px-2 text-red-600 text-sm min-h-[1rem]'>{errors.password?.message}</div>
           </div>
           <div>
-            <label htmlFor='confirm-password' className='block text-sm font-medium text-gray-900 mb-2 dark:text-white'>
+            <label htmlFor='confirm_password' className='block text-sm font-medium text-gray-900 mb-2 dark:text-white'>
               Confirm password
             </label>
             <input
               type='password'
-              id='confirm-password'
-              name='confirm-password'
               placeholder='••••••••'
               className='form-input bg-gray-50 w-full border border-gray-300 rounded-lg text-gray-900 text-sm p-2.5 block focus:ring-blue-600 focus:border-blue-500
                     focus:outline-none focus:border-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'
+              autoComplete='on'
+              {...register('confirm_password', rules.confirm_password)}
             ></input>
+            <div className='mt-1 px-2 text-red-600 text-sm min-h-[1rem]'>{errors.confirm_password?.message}</div>
           </div>
           <div className='flex items-start'>
             <div className='flex items-center h-5'>
               <input
                 type='checkbox'
-                id='terms'
-                name='terms'
                 className='form-checkbox w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:outline-none focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:focus:ring-offset-gray-800'
+                {...register('terms')}
               />
             </div>
             <div className='ml-3 text-sm'>
@@ -80,7 +95,6 @@ export default function Register() {
             </div>
           </div>
           <button
-            type='submit'
             className='w-full bg-blue-600 rounded-lg text-white font-medium text-sm px-5 py-2.5 text-center hover:bg-blue-700 
             focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800'
           >
