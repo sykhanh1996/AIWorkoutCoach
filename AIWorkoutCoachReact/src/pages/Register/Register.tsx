@@ -20,6 +20,7 @@ export default function Register() {
   } = useForm<FormData>()
 
   const rules = getRules(getValues)
+  const test = 'test'
 
   const onSubmit = handleSubmit(
     (data) => {
