@@ -263,6 +263,7 @@ Các bạn thêm đoạn code này vào `settings.json` của VS Code
   "tailwindCSS.experimental.classRegex": ["[a-zA-Z]*class[a-zA-Z]*='([^']+)'"]
 }
 ```
+
 yarn add -D @tailwindcss/forms
 yarn add @tailwindcss/forms
 yarn add react-icons --save
@@ -270,3 +271,7 @@ yarn add styled-components
 yarn add react-hook-form
 yarn add @hookform/resolvers
 yarn add yup
+yarn add axios
+yarn add @tanstack/react-query
+yarn add @tanstack/react-query-devtools
+yarn add lodash

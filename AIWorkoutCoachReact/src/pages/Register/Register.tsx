@@ -4,6 +4,9 @@ import ThemeSwitchButton from 'src/components/ThemeSwitchButton'
 import { Schema, getRules, schema } from 'src/utils/rules'
 import Input from 'src/components/Input'
 import { yupResolver } from '@hookform/resolvers/yup'
+import { omit } from 'lodash'
+import { useMutation } from '@tanstack/react-query'
+import { registerAccount } from 'src/apis/auth.api'
 
 // const registerSchema = schema.pick(['email', 'password', 'confirm_password'])
 
@@ -12,23 +15,23 @@ export default function Register() {
   const {
     register,
     handleSubmit,
-    getValues,
     formState: { errors }
   } = useForm<FormData>({
     resolver: yupResolver(schema)
   })
 
-  // const rules = getRules(getValues)
+  const registerAccountMutation = useMutation({
+    mutationFn: (body: Omit<FormData, 'confirm_password' | 'terms'>) => registerAccount(body)
+  })
 
-  const onSubmit = handleSubmit(
-    (data) => {
-      console.log(data)
-    },
-    (data) => {
-      const password = getValues('password')
-      console.log(password)
-    }
-  )
+  const onSubmit = handleSubmit((data) => {
+    const body = omit(data, ['confirm_password', 'terms'])
+    registerAccountMutation.mutate(body, {
+      onSuccess: (data) => {
+        console.log(data)
+      }
+    })
+  })
 
   return (
     <div className='w-full bg-white rounded-lg shadow lg:w-4/12 md:w-7/12 dark:bg-gray-800 dark:border-gray-700'>
