@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import ThemeSwitchButton from 'src/components/ThemeSwitchButton'
 import { getRules } from 'src/utils/rules'
+import Input from 'src/components/Input'
 
 // const registerSchema = schema.pick(['email', 'password', 'confirm_password'])
 
@@ -20,7 +21,6 @@ export default function Register() {
   } = useForm<FormData>()
 
   const rules = getRules(getValues)
-  const test = 'test'
 
   const onSubmit = handleSubmit(
     (data) => {
@@ -42,48 +42,48 @@ export default function Register() {
           <ThemeSwitchButton />
         </div>
         <form className='space-y-4 md:space-y-6' onSubmit={onSubmit}>
-          <div>
-            <label htmlFor='email' className='block text-sm font-medium text-gray-900 mb-2 dark:text-white '>
-              Your email
-            </label>
-            <input
-              type='email'
-              placeholder='name@company.com'
-              className='form-input bg-gray-50 w-full border border-gray-300 rounded-lg text-gray-900 text-sm p-2.5 block focus:ring-blue-600 focus:border-blue-500
-                    focus:outline-none focus:border-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'
-              autoComplete='on'
-              {...register('email', rules.email)}
-            ></input>
-            <div className='mt-1 px-2 text-red-600 text-sm min-h-[1rem]'>{errors.email?.message}</div>
-          </div>
-          <div>
-            <label htmlFor='password' className='block text-sm font-medium text-gray-900 mb-2 dark:text-white'>
-              Password
-            </label>
-            <input
-              type='password'
-              placeholder='••••••••'
-              className='form-input bg-gray-50 w-full border border-gray-300 rounded-lg text-gray-900 text-sm p-2.5 block focus:ring-blue-600 focus:border-blue-500
-                    focus:outline-none focus:border-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'
-              autoComplete='on'
-              {...register('password', rules.password)}
-            ></input>
-            <div className='mt-1 px-2 text-red-600 text-sm min-h-[1rem]'>{errors.password?.message}</div>
-          </div>
-          <div>
-            <label htmlFor='confirm_password' className='block text-sm font-medium text-gray-900 mb-2 dark:text-white'>
-              Confirm password
-            </label>
-            <input
-              type='password'
-              placeholder='••••••••'
-              className='form-input bg-gray-50 w-full border border-gray-300 rounded-lg text-gray-900 text-sm p-2.5 block focus:ring-blue-600 focus:border-blue-500
-                    focus:outline-none focus:border-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'
-              autoComplete='on'
-              {...register('confirm_password', rules.confirm_password)}
-            ></input>
-            <div className='mt-1 px-2 text-red-600 text-sm min-h-[1rem]'>{errors.confirm_password?.message}</div>
-          </div>
+          <Input
+            name='email'
+            register={register}
+            type='email'
+            errorMessage={errors.email?.message}
+            placeholder='name@company.com'
+            autoComplete='on'
+            rules={rules.email}
+            label={
+              <label htmlFor='email' className='block text-sm font-medium text-gray-900 mb-2 dark:text-white '>
+                Your email
+              </label>
+            }
+          />
+          <Input
+            name='password'
+            register={register}
+            type='password'
+            errorMessage={errors.password?.message}
+            placeholder='••••••••'
+            autoComplete='on'
+            rules={rules.password}
+            label={
+              <label htmlFor='email' className='block text-sm font-medium text-gray-900 mb-2 dark:text-white '>
+                Password
+              </label>
+            }
+          />
+          <Input
+            name='confirm_password'
+            register={register}
+            type='password'
+            errorMessage={errors.confirm_password?.message}
+            placeholder='••••••••'
+            autoComplete='on'
+            rules={rules.confirm_password}
+            label={
+              <label htmlFor='email' className='block text-sm font-medium text-gray-900 mb-2 dark:text-white '>
+                Confirm password
+              </label>
+            }
+          />
           <div className='flex items-start'>
             <div className='flex items-center h-5'>
               <input
