@@ -276,3 +276,7 @@ yarn add @tanstack/react-query
 yarn add @tanstack/react-query-devtools
 yarn add lodash
 yarn add react-toastify
+yarn add @floating-ui/react-dom-interactions
+yarn add framer-motion
+yarn add @floating-ui/react-dom
+yarn add @floating-ui/react
