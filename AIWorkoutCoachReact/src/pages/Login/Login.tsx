@@ -4,6 +4,7 @@ import { useContext } from 'react'
 import { useForm } from 'react-hook-form'
 import { Link, useNavigate } from 'react-router-dom'
 import { loginAccount } from 'src/apis/auth.api'
+import Button from 'src/components/Button'
 import Input from 'src/components/Input'
 import ThemeSwitchButton from 'src/components/ThemeSwitchButton'
 import { AppContext } from 'src/contexts/app.context'
@@ -111,13 +112,14 @@ export default function Login() {
               Forgot password?
             </a>
           </div>
-          <button
-            type='submit'
+          <Button
             className='w-full bg-blue-600 rounded-lg text-white font-medium text-sm px-5 py-2.5 text-center hover:bg-blue-700 
             focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800'
+            isLoading={loginMutation.isPending}
+            disabled={loginMutation.isPending}
           >
             Sign in to your account
-          </button>
+          </Button>
           <p className='text-sm font-light text-gray-400 dark:text-gray-400'>
             Dont't have an account yet?
             <Link className='font-medium text-blue-600 hover:underline pl-2 dark:text-blue-500' to='/register'>

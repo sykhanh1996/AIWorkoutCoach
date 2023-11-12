@@ -11,6 +11,7 @@ import { isAxiosUnprocessableEntityError } from 'src/utils/utils'
 import { ErrorResponse } from 'src/types/utils.type'
 import { useContext } from 'react'
 import { AppContext } from 'src/contexts/app.context'
+import Button from 'src/components/Button'
 
 // const registerSchema = schema.pick(['email', 'password', 'confirm_password'])
 
@@ -120,12 +121,14 @@ export default function Register() {
               </label>
             </div>
           </div>
-          <button
+          <Button
             className='w-full bg-blue-600 rounded-lg text-white font-medium text-sm px-5 py-2.5 text-center hover:bg-blue-700 
             focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800'
+            isLoading={registerAccountMutation.isPending}
+            disabled={registerAccountMutation.isPending}
           >
             Create an account
-          </button>
+          </Button>
           <p className='text-sm font-light text-gray-400 dark:text-gray-400'>
             Already have an account?
             <Link className='font-medium text-blue-600 hover:underline pl-2 dark:text-blue-500' to='/login'>
