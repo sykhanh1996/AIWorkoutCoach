@@ -3,81 +3,23 @@ import { FloatingPortal, useFloating, arrow, FloatingArrow, offset } from '@floa
 import logo from '../../assets/images/logo.jpg'
 import { useRef, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
+import Popover from '../Popover'
 
 export default function Header() {
-  const [open, setOpen] = useState(false)
-  const arrowRef = useRef(null)
-
-  const { x, y, refs, floatingStyles, context, strategy, middlewareData } = useFloating({
-    middleware: [
-      arrow({
-        element: arrowRef
-      }),
-      offset(6)
-    ]
-  })
-
-  const showPopover = () => {
-    setOpen(true)
-  }
-  const hidePopover = () => {
-    setOpen(false)
-  }
-
-  // return (
-  //   <div className='pb-5 pt-2 bg-blue-50 text-gray-900'>
-  //     <div className='container'>
-  //       <div className='flex flex-wrap items-center justify-between p-4'>
-  //         <Link to='/'>AI Coach</Link>
-  //         <div className='flex space-x-5'>
-  //           <div className='flex items-center hover:cursor-pointer hover:text-gray-500'>
-  //             <svg
-  //               xmlns='http://www.w3.org/2000/svg'
-  //               fill='none'
-  //               viewBox='0 0 24 24'
-  //               strokeWidth={1.5}
-  //               stroke='currentColor'
-  //               className='w-6 h-6'
-  //             >
-  //               <path
-  //                 strokeLinecap='round'
-  //                 strokeLinejoin='round'
-  //                 d='M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 013 12c0-1.605.42-3.113 1.157-4.418'
-  //               />
-  //             </svg>
-  //             <span className='mx-1'>Tieng viet</span>
-  //             <svg
-  //               xmlns='http://www.w3.org/2000/svg'
-  //               fill='none'
-  //               viewBox='0 0 24 24'
-  //               strokeWidth={1.5}
-  //               stroke='currentColor'
-  //               className='w-6 h-6'
-  //             >
-  //               <path strokeLinecap='round' strokeLinejoin='round' d='M19.5 8.25l-7.5 7.5-7.5-7.5' />
-  //             </svg>
-  //           </div>
-  //           <div className='flex hover:cursor-pointer hover:text-gray-500'>
-  //             <div className='w-6 h-6 mr-2 flex-shrink-0'>
-  //               <img src={logo} alt='avatar' className='w-full h-full object-cover rounded-full' />
-  //             </div>
-  //             <span className='mx-1'>Sykhanh1996</span>
-  //           </div>
-  //         </div>
-  //       </div>
-  //     </div>
-  //   </div>
-  // )
-
   return (
     <div className='pb-5 pt-2 bg-blue-500 text-white'>
       <div className='container'>
         <div className='flex justify-end'>
-          <div
+          <Popover
             className='flex items-center py-1 hover:text-gray-300 cursor-pointer'
-            ref={refs.setReference}
-            onMouseEnter={showPopover}
-            onMouseLeave={hidePopover}
+            renderPopover={
+              <div className='bg-white relative shadow-md rounded-sm border border-gray-200'>
+                <div className='flex flex-col py-2 pr-28 pl-3'>
+                  <button className='py-2 px-3 hover:text-orange'>Tiếng Việt</button>
+                  <button className='py-2 px-3 hover:text-orange mt-2'>English</button>
+                </div>
+              </div>
+            }
           >
             <svg
               xmlns='http://www.w3.org/2000/svg'
@@ -104,37 +46,29 @@ export default function Header() {
             >
               <path strokeLinecap='round' strokeLinejoin='round' d='M19.5 8.25l-7.5 7.5-7.5-7.5' />
             </svg>
-            <FloatingPortal>
-              <AnimatePresence>
-                {open && (
-                  <motion.div
-                    ref={refs.setFloating}
-                    style={{
-                      position: strategy,
-                      top: y ?? 0,
-                      left: x ?? 0,
-                      width: 'max-content',
-                      transformOrigin: `${middlewareData.arrow?.x}px top`
-                    }}
-                    initial={{ opacity: 0, transform: 'scale(0)' }}
-                    animate={{ opacity: 1, transform: 'scale(1)' }}
-                    exit={{ opacity: 0, transform: 'scale(0)' }}
-                    transition={{ duration: 0.2 }}
-                  >
-                    <FloatingArrow ref={arrowRef} context={context} fill='white' />
-                    <div className='bg-white relative shadow-md rounded-sm border border-gray-200'>
-                      <div className='flex flex-col py-2 px-3'>
-                        <button className='py-2 px-3 hover:text-orange'>Tiếng Việt</button>
-                        <button className='py-2 px-3 hover:text-orange mt-2'>English</button>
-                      </div>
-                    </div>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </FloatingPortal>
-          </div>
-
-          <div className='flex items-center py-1 hover:text-gray-300 cursor-pointer ml-6'>
+          </Popover>
+          <Popover
+            className='flex items-center py-1 hover:text-gray-300 cursor-pointer ml-6'
+            renderPopover={
+              <div className='bg-white relative shadow-md rounded-sm border border-gray-200'>
+                <Link
+                  to='/'
+                  className='block py-3 px-4 hover:bg-slate-100 bg-white hover:text-cyan-500 w-full text-left'
+                >
+                  Tài khoản của tôi
+                </Link>
+                <Link
+                  to='/'
+                  className='block py-3 px-4 hover:bg-slate-100 bg-white hover:text-cyan-500 w-full text-left'
+                >
+                  Đơn mua
+                </Link>
+                <button className='block py-3 px-4 hover:bg-slate-100 bg-white hover:text-cyan-500 w-full text-left'>
+                  Đăng xuất
+                </button>
+              </div>
+            }
+          >
             <div className='w-6 h-6 mr-2 flex-shrink-0'>
               <img
                 src='https://cf.shopee.vn/file/d04ea22afab6e6d250a370d7ccc2e675_tn'
@@ -143,7 +77,7 @@ export default function Header() {
               />
             </div>
             <div>Sykhanh1996</div>
-          </div>
+          </Popover>
         </div>
         <div className='grid grid-cols-12 gap-4 mt-4 items-end'>
           <Link to='/' className='col-span-2'>
