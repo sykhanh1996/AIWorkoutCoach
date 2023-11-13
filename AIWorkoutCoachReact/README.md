@@ -280,3 +280,4 @@ yarn add @floating-ui/react-dom-interactions
 yarn add framer-motion
 yarn add @floating-ui/react-dom
 yarn add @floating-ui/react
+yarn add classnames
