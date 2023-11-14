@@ -12,8 +12,8 @@ import { ErrorResponse } from 'src/types/utils.type'
 import { schema, Schema } from 'src/utils/rules'
 import { isAxiosUnprocessableEntityError } from 'src/utils/utils'
 
-type FormData = Omit<Schema, 'confirm_password'>
-const loginSchema = schema.omit(['confirm_password'])
+type FormData = Pick<Schema, 'email' | 'password'>
+const loginSchema = schema.pick(['email', 'password'])
 
 export default function Login() {
   const { setIsAuthenticated, setProfile } = useContext(AppContext)
@@ -33,7 +33,6 @@ export default function Login() {
   })
 
   const onSubmit = handleSubmit((data) => {
-    console.log('data', data)
     loginMutation.mutate(data, {
       onSuccess: (data) => {
         setIsAuthenticated(true)

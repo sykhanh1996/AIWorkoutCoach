@@ -13,27 +13,28 @@ import { useContext } from 'react'
 import { AppContext } from 'src/contexts/app.context'
 import Button from 'src/components/Button'
 
-// const registerSchema = schema.pick(['email', 'password', 'confirm_password'])
+type FormData = Pick<Schema, 'email' | 'password' | 'confirm_password' | 'terms'>
+const registerSchema = schema.pick(['email', 'password', 'confirm_password', 'terms'])
 
 export default function Register() {
   const { setIsAuthenticated, setProfile } = useContext(AppContext)
   const navigate = useNavigate()
-  type FormData = Schema
+
   const {
     register,
     handleSubmit,
     setError,
     formState: { errors }
   } = useForm<FormData>({
-    resolver: yupResolver(schema)
+    resolver: yupResolver(registerSchema)
   })
 
   const registerAccountMutation = useMutation({
-    mutationFn: (body: Omit<FormData, 'confirm_password' | 'terms'>) => authApi.registerAccount(body)
+    mutationFn: (body: Omit<FormData, 'confirm_password'>) => authApi.registerAccount(body)
   })
 
   const onSubmit = handleSubmit((data) => {
-    const body = omit(data, ['confirm_password', 'terms'])
+    const body = omit(data, ['confirm_password'])
     registerAccountMutation.mutate(body, {
       onSuccess: (data) => {
         setIsAuthenticated(true)
