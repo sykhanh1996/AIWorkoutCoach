@@ -3,6 +3,7 @@ const path = {
   login: '/login',
   register: '/register',
   logout: '/logout',
+  productDetail: ':id',
   profile: '/profile'
 } as const
 

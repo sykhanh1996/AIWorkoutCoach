@@ -281,3 +281,4 @@ yarn add framer-motion
 yarn add @floating-ui/react-dom
 yarn add @floating-ui/react
 yarn add classnames
+yarn add dompurify @types/dompurify
