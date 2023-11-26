@@ -54,7 +54,8 @@ export const schema = yup.object({
     message: 'Giá không phù hợp',
     test: testPriceMinMax
   }),
-  terms: yup.boolean().defined()
+  terms: yup.boolean().defined(),
+  name: yup.string().trim().required('Tên sản phẩm là bắt buộc')
 })
 
 const loginSchema = schema.omit(['confirm_password'])
